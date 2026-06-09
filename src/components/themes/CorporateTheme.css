@@ -1,0 +1,9 @@
+.theme-corporate { background: #ffffff; color: #1e293b; display: flex; flex-direction: column; height: 100%; width: 100%; }
+.theme-corporate .top-bar { height: 8px; background: #0ea5e9; width: 100%; flex-shrink: 0; }
+.theme-corporate .content { padding: 1.5rem; display: flex; gap: 1rem; flex: 1; }
+.theme-corporate .info { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.theme-corporate .card-name { font-size: 1.5rem; font-weight: 700; color: #0f172a; }
+.theme-corporate .card-title { font-size: 0.8rem; font-weight: 600; color: #0ea5e9; text-transform: uppercase; margin-bottom: 1rem; }
+.theme-corporate .card-contact { font-size: 0.7rem; color: #64748b; line-height: 1.6; }
+.theme-corporate .card-img { width: 80px; height: 80px; object-fit: cover; border-radius: 4px; }
+.theme-corporate .card-desc { font-size: 0.7rem; color: #94a3b8; margin-top: 8px; }

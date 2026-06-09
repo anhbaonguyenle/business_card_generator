@@ -1,0 +1,7 @@
+.theme-glass { background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%); color: #fff; padding: 1.5rem; position: relative; height: 100%; width: 100%; }
+.theme-glass .glass-panel { position: absolute; top: 1rem; left: 1rem; right: 1rem; bottom: 1rem; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 8px; padding: 1rem; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); }
+.theme-glass .card-name { font-size: 1.3rem; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.theme-glass .card-title { font-size: 0.8rem; opacity: 0.9; margin-bottom: 0.5rem; }
+.theme-glass .card-contact { font-size: 0.7rem; opacity: 0.8; line-height: 1.5; }
+.theme-glass .card-img { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.5); z-index: 10; }
+.theme-glass .card-desc { font-size: 0.65rem; opacity: 0.7; margin-top: 8px; }

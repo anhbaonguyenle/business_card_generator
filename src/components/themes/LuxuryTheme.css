@@ -1,0 +1,9 @@
+.theme-luxury { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: #f8fafc; padding: 1.5rem; border: 1px solid #334155; display: flex; flex-direction: column; position: relative; height: 100%; width: 100%; }
+.theme-luxury::before { content:''; position:absolute; top:4px; left:4px; right:4px; bottom:4px; border: 1px solid #475569; pointer-events:none; }
+.theme-luxury .divider { width: 30px; height: 2px; background: #cbd5e1; margin: 0.75rem 0; }
+.theme-luxury .card-name { font-size: 1.4rem; font-weight: 300; letter-spacing: 0.05em; }
+.theme-luxury .card-title { font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.15em; }
+.theme-luxury .bottom-section { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; z-index: 1; position: relative; }
+.theme-luxury .card-contact { font-size: 0.7rem; color: #cbd5e1; line-height: 1.6; font-weight: 300; letter-spacing: 0.02em; }
+.theme-luxury .card-img { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; opacity: 0.9; }
+.theme-luxury .card-desc { font-size: 0.65rem; color: #64748b; font-style: italic; margin-top: auto; padding-bottom: 8px; }

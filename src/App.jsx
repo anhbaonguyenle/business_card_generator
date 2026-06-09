@@ -1,122 +1,152 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import React, { useState } from 'react';
+import './App.css';
+import { Check, Download } from 'lucide-react';
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
+import { MinimalTheme, DarkElegantTheme, NeonTheme, NatureTheme, CorporateTheme, GlassTheme, BoldTheme, RetroTheme, CreativeTheme, LuxuryTheme } from './components/themes';
+import Sidebar from './components/Sidebar';
 
-function App() {
-  const [count, setCount] = useState(0)
+const THEMES = [
+  { id: 'minimal', name: 'Minimalist Modern' },
+  { id: 'dark-elegant', name: 'Dark Elegance' },
+  { id: 'neon', name: 'Tech Neon' },
+  { id: 'nature', name: 'Nature Inspired' },
+  { id: 'corporate', name: 'Corporate Blue' },
+  { id: 'glass', name: 'Gradient Glass' },
+  { id: 'bold', name: 'Bold Typography' },
+  { id: 'retro', name: 'Vintage Retro' },
+  { id: 'creative', name: 'Creative Portfolio' },
+  { id: 'luxury', name: 'Luxurious Gold' },
+];
+
+const ThemeComponents = {
+  'minimal': MinimalTheme,
+  'dark-elegant': DarkElegantTheme,
+  'neon': NeonTheme,
+  'nature': NatureTheme,
+  'corporate': CorporateTheme,
+  'glass': GlassTheme,
+  'bold': BoldTheme,
+  'retro': RetroTheme,
+  'creative': CreativeTheme,
+  'luxury': LuxuryTheme,
+};
+
+export default function App() {
+  const [formData, setFormData] = useState({
+    name: 'Alex Johnson',
+    title: 'Senior Product Designer',
+    phone: '+1 (555) 123-4567',
+    email: 'alex.design@example.com',
+    description: 'Specializing in UX/UI and modern web experiences that delight users.',
+    image: null,
+    font: 'Inter',
+  });
+
+  const [selectedCards, setSelectedCards] = useState(new Set(['minimal']));
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  const toggleCardSelection = (id) => {
+    setSelectedCards((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(id)) {
+        newSet.delete(id);
+      } else {
+        newSet.add(id);
+      }
+      return newSet;
+    });
+  };
+
+  const downloadPDF = async () => {
+    if (selectedCards.size === 0) return;
+    setIsDownloading(true);
+
+    try {
+      const pdf = new jsPDF({
+        orientation: 'landscape',
+        unit: 'in',
+        format: [3.5, 2]
+      });
+
+      const selectedArray = Array.from(selectedCards);
+      
+      for (let i = 0; i < selectedArray.length; i++) {
+        const themeId = selectedArray[i];
+        const cardElement = document.getElementById(`card-${themeId}`);
+        
+        if (cardElement) {
+          const canvas = await html2canvas(cardElement, {
+            scale: 3,
+            useCORS: true,
+            backgroundColor: null,
+            logging: false,
+          });
+
+          const imgData = canvas.toDataURL('image/png');
+          
+          if (i > 0) {
+            pdf.addPage([3.5, 2], 'landscape');
+          }
+          
+          pdf.addImage(imgData, 'PNG', 0, 0, 3.5, 2);
+        }
+      }
+
+      pdf.save('business_cards.pdf');
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      alert('Failed to generate PDF. Please try again.');
+    } finally {
+      setIsDownloading(false);
+    }
+  };
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="app-container">
+      <Sidebar formData={formData} setFormData={setFormData} />
 
-      <div className="ticks"></div>
+      <main className="main-content">
+        <header className="main-header">
+          <h2>Select Styles ({selectedCards.size} Selected)</h2>
+          <button
+            className="download-btn"
+            onClick={downloadPDF}
+            disabled={selectedCards.size === 0 || isDownloading}
+          >
+            <Download size={20} />
+            {isDownloading ? 'Generating PDF...' : 'Download Selected PDF'}
+          </button>
+        </header>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+        <div className="cards-grid">
+          {THEMES.map(theme => {
+            const ThemeComponent = ThemeComponents[theme.id];
+            return (
+              <div
+                key={theme.id}
+                className={`card-wrapper ${selectedCards.has(theme.id) ? 'selected' : ''}`}
+              >
+                <div
+                  className="card-select-overlay"
+                  onClick={() => toggleCardSelection(theme.id)}
+                >
+                  <Check size={20} />
+                </div>
+                
+                <div 
+                  id={`card-${theme.id}`}
+                  className="card-inner"
+                  style={{ fontFamily: formData.font }}
+                  onClick={() => toggleCardSelection(theme.id)}
+                >
+                  <ThemeComponent data={formData} />
+                </div>
+              </div>
+            );
+          })}
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      </main>
+    </div>
+  );
 }
-
-export default App

@@ -1,0 +1,8 @@
+.theme-dark-elegant { background: #111111; color: #d4af37; padding: 2rem; display: flex; align-items: center; height: 100%; width: 100%; position: relative; }
+.theme-dark-elegant .border-accent { position: absolute; top: 8px; left: 8px; right: 8px; bottom: 8px; border: 1px solid rgba(212, 175, 55, 0.3); pointer-events: none; }
+.theme-dark-elegant .content { width: 100%; text-align: center; position: relative; z-index: 1; }
+.theme-dark-elegant .card-name { font-size: 1.5rem; font-weight: 400; letter-spacing: 0.1em; }
+.theme-dark-elegant .card-title { font-size: 0.75rem; color: #a0a0a0; letter-spacing: 0.15em; margin-top: 4px; margin-bottom: 1rem;}
+.theme-dark-elegant .card-contact { font-size: 0.7rem; color: #888; display: flex; justify-content: center; gap: 1rem; }
+.theme-dark-elegant .card-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; margin: 0 auto 10px auto; display: block; border: 1px solid #d4af37; }
+.theme-dark-elegant .card-desc { font-size: 0.65rem; color: #666; margin-top: 8px; font-style: italic; }

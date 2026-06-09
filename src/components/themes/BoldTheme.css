@@ -1,0 +1,9 @@
+.theme-bold { background: #fde047; color: #111827; padding: 1.5rem; overflow: hidden; position: relative; height: 100%; width: 100%; }
+.theme-bold .bg-text { position: absolute; font-size: 5rem; font-weight: 900; opacity: 0.05; top: -10px; left: -10px; line-height: 1; word-break: break-all; pointer-events: none; text-transform: uppercase; }
+.theme-bold .content { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+.theme-bold .card-name { font-size: 1.8rem; font-weight: 900; line-height: 1.1; }
+.theme-bold .card-title { font-size: 0.9rem; font-weight: 700; color: #b45309; margin-bottom: 0.5rem; }
+.theme-bold .bottom-row { display: flex; justify-content: space-between; align-items: flex-end; }
+.theme-bold .card-contact { font-size: 0.75rem; font-weight: 600; line-height: 1.4; }
+.theme-bold .card-img { width: 50px; height: 50px; border-radius: 0; object-fit: cover; border: 3px solid #111; box-shadow: 4px 4px 0 #111; }
+.theme-bold .card-desc { font-size: 0.7rem; font-weight: 500; opacity: 0.8; margin-top: 4px; max-width: 200px; }
