@@ -1,16 +1,54 @@
-# React + Vite
+# Business Card Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web application for generating business cards, built with React and Vite.
 
-Currently, two official plugins are available:
+## Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Follow these steps to clone the repository and run the application locally:
 
-## Expanding the ESLint configuration
+### 1. Clone the repository
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+git clone https://github.com/anhbaonguyenle/business_card_generator.git
+cd business_card_generator
+```
+
+### 2. Install dependencies
+
+Run the following command to install all required dependencies:
+
+```bash
+npm install
+```
+
+### 3. Run the development server
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173` (or another port if 5173 is in use). Open this URL in your browser to view the app.
+
+### 4. Build for production
+
+To create a production build of the application, run:
+
+```bash
+npm run build
+```
+
+The built files will be output to the `dist` directory. These files can be deployed to any static hosting service.
+
+### 5. Preview production build
+
+You can preview the production build locally to ensure everything works correctly before deploying:
+
+```bash
+npm run preview
+```
